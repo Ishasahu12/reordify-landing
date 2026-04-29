@@ -219,7 +219,7 @@ return (
 }
 function ClockIcon() {
 return (
-<span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(140,102,255,0.12)] text-[10px] text-[#8c66ff]">&#9201;</span>
+<span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(140,102,255,0.12)] text-[10px] text-[#8c66ff]">⏱</span>
 );
 }
 function AlertDot() {
@@ -238,6 +238,7 @@ function CountUp({ value, prefix = '', suffix = '', duration = 1200 }) {
 const [count, setCount] = useState(0);
 useEffect(() => {
 const startTime = performance.now();
+let frame;
 const tick = (now) => {
 const progress = Math.min((now - startTime) / duration, 1);
 const eased = 1 - Math.pow(1 - progress, 3);
@@ -351,7 +352,7 @@ return (
 <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-alert)]">Urgent</span>
 </div>
 <h2 className="font-display text-[1.7rem] font-[700] tracking-[-0.05em]">Order 120 units today</h2>
-<p className="mt-3 text-base font-medium text-[var(--color-text)]">Hydration Pack &mdash; stockout in <CountUp value={5} /> days</p>
+<p className="mt-3 text-base font-medium text-[var(--color-text)]">{"Hydration Pack — stockout in "}<CountUp value={5} />{" days"}</p>
 <div className="mt-3 flex items-center gap-3">
 <div className="flex items-center gap-1.5 rounded-full bg-[var(--color-alert-soft)] px-3 py-1.5">
 <DollarIcon />
@@ -530,7 +531,7 @@ return (
 <div className="grid gap-6">
 <article className="rounded-[30px] border border-[var(--color-line)] bg-[rgba(18,21,31,0.02)] p-7">
 <div className="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">No extra reading</div>
-<p className="mt-4 text-lg leading-8 text-[var(--color-text)]">Reordify surfaces the SKU, the urgency, the money at risk, and the action &mdash; all in one frame.</p>
+<p className="mt-4 text-lg leading-8 text-[var(--color-text)]">{"Reordify surfaces the SKU, the urgency, the money at risk, and the action — all in one frame."}</p>
 </article>
 <article className="rounded-[30px] border border-[var(--color-line)] bg-white p-7 shadow-sm">
 <div className="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">Empty state</div>
@@ -854,7 +855,7 @@ return (
 }
 function Footer() {
 return <footer className="mx-auto flex max-w-7xl flex-col gap-3 px-6 pb-10 pt-4 text-sm text-[var(--color-muted)] lg:flex-row lg:items-center lg:justify-between lg:px-10">
-<div>Reordify &mdash; inventory decisions for Shopify / D2C brands</div>
+<div>{"Reordify — inventory decisions for Shopify / D2C brands"}</div>
 <div>Built to tell teams what to do next</div>
 </footer>;
 }
@@ -917,9 +918,9 @@ return (
 </div>
 <select value={form.orders} onChange={(e) => setForm({...form, orders: e.target.value})} className="focus-ring w-full appearance-none rounded-[20px] border border-[var(--color-line)] bg-white py-4 pl-11 pr-4 text-base outline-none" aria-label="Monthly orders">
 <option value="">Monthly orders</option>
-<option value="0-100">0 &ndash; 100</option>
-<option value="100-500">100 &ndash; 500</option>
-<option value="500-2000">500 &ndash; 2,000</option>
+<option value="0-100">{"0 - 100"}</option>
+<option value="100-500">{"100 - 500"}</option>
+<option value="500-2000">{"500 - 2,000"}</option>
 <option value="2000+">2,000+</option>
 </select>
 </div>
@@ -952,7 +953,7 @@ function Toast({ message, show, onClose }) {
 return (
 <div className={`toast fixed bottom-5 right-5 z-[80] rounded-[24px] border border-[var(--color-line)] bg-white px-5 py-4 shadow-[0_20px_60px_rgba(18,21,31,0.12)] ${show ? 'show' : ''}`}>
 <div className="flex items-center gap-4">
-<div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--color-accent-soft)] font-bold text-[var(--color-accent)]">&#10003;</div>
+<div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--color-accent-soft)] font-bold text-[var(--color-accent)]">✓</div>
 <div>
 <div className="font-semibold text-[var(--color-text)]">{message}</div>
 <div className="text-sm text-[var(--color-muted)]">We saved your request for follow-up.</div>
