@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="open-codesign" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reordify SaaS Website</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+      <script>
+window.tailwind = {
+config: {
+theme: {
+extend: {
+fontFamily: {
+display: ['Poppins', 'sans-serif'],
+body: ['DM Sans', 'sans-serif']
+}
+}
+}
+}
+};
+</script>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <style>
+:root {
+--color-bg: #ffffff;
+--color-surface: rgba(255,255,255,0.82);
+--color-surface-strong: #ffffff;
+--color-text: #12151f;
+--color-muted: #5f6678;
+--color-line: rgba(18,21,31,0.06);
+--color-accent: #07D568;
+--color-accent-soft: rgba(7,213,104,0.10);
+--color-purple-soft: rgba(140,102,255,0.12);
+--color-alert: #e5484d;
+--color-alert-soft: rgba(229,72,77,0.10);
+--radius-base: 18px;
+--radius-lg: 28px;
+--shadow-soft: 0 20px 60px rgba(23,28,45,0.06);
+--shadow-lift: 0 26px 70px rgba(23,28,45,0.10);
+--font-display: 'Poppins', sans-serif;
+--font-body: 'DM Sans', sans-serif;
+--space-unit: 1rem;
+--ease-out: cubic-bezier(.22,1,.36,1);
+}
+html { scroll-behavior: smooth; }
+html, body {
+margin: 0;
+background: var(--color-bg);
+color: var(--color-text);
+font-family: var(--font-body);
+overflow-x: hidden;
+}
+.glass {
+background: rgba(255,255,255,0.74);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 1px solid rgba(18,21,31,0.06);
+}
+.reveal {
+opacity: 0;
+transform: translateY(28px);
+transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.hover-lift {
+transition: transform 120ms var(--ease-out), background-color 120ms, box-shadow 160ms;
+}
+.hover-lift:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+.hover-lift:active { transform: scale(0.97); }
+.focus-ring:focus-visible {
+outline: none;
+box-shadow: 0 0 0 2px rgba(7,213,104,0.18), 0 0 0 5px rgba(7,213,104,0.34);
+}
+.flow-line {
+position: absolute;
+left: 50%;
+top: 0;
+transform: translateX(-50%);
+width: 980px;
+height: 100%;
+pointer-events: none;
+opacity: 0.4;
+z-index: -1;
+}
+.flow-path {
+fill: none;
+stroke: url(#flowGradient);
+stroke-width: 2;
+stroke-linecap: round;
+stroke-dasharray: 12 10;
+opacity: 0.9;
+}
+.flow-active {
+fill: none;
+stroke: url(#flowGradient2);
+stroke-width: 4;
+stroke-linecap: round;
+stroke-dasharray: 10 9000;
+transition: stroke-dashoffset 260ms ease-out;
+filter: drop-shadow(0 0 10px rgba(7,213,104,0.20));
+}
+.decision-pulse { animation: pulseAlert 2.4s ease-in-out infinite; }
+.count-up { font-variant-numeric: tabular-nums; }
+.nav-link.active {
+background: rgba(18,21,31,0.05);
+color: var(--color-text);
+font-weight: 700;
+}
+.view-panel {
+opacity: 0;
+transform: translateY(10px);
+animation: viewIn 240ms var(--ease-out) forwards;
+}
+.tooltip {
+opacity: 0;
+transform: translateY(6px);
+pointer-events: none;
+transition: opacity 160ms ease, transform 160ms ease;
+}
+.tooltip-wrap:hover .tooltip {
+opacity: 1;
+transform: translateY(0);
+transition-delay: 160ms;
+}
+.toast {
+transform: translateY(24px);
+opacity: 0;
+pointer-events: none;
+transition: opacity 220ms ease, transform 220ms var(--ease-out);
+}
+.toast.show {
+transform: translateY(0);
+opacity: 1;
+pointer-events: auto;
+}
+.progress-bar {
+transform-origin: left center;
+transition: transform 180ms linear;
+}
+@keyframes pulseAlert {
+0%, 100% { box-shadow: 0 0 0 0 rgba(229,72,77,0.10); }
+50% { box-shadow: 0 0 0 12px rgba(229,72,77,0); }
+}
+@keyframes floatCard {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-8px); }
+}
+@keyframes shimmer {
+0% { background-position: 120% 0; }
+100% { background-position: -120% 0; }
+}
+@keyframes viewIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.hero-float { animation: floatCard 6.8s ease-in-out infinite; }
+.shimmer {
+background: linear-gradient(90deg, rgba(18,21,31,0.04) 20%, rgba(7,213,104,0.12) 50%, rgba(18,21,31,0.04) 80%);
+background-size: 220% 100%;
+animation: shimmer 2.2s linear infinite;
+}
+</style>
+    </head>
+    <body>
+      <div id="root">
+      </div>
+      <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <script type="text/babel">
+const { useEffect, useState } = React;
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+"accentColor": "#07D568",
+"heroGlow": true,
+"sectionGap": 112,
+"roundedScale": 28,
+"decisionMode": "action"
+}/*EDITMODE-END*/;
+const TWEAK_SCHEMA = /*TWEAK-SCHEMA-BEGIN*/{
+"accentColor": {
+"kind": "color"
+},
+"heroGlow": {
+"kind": "boolean"
+},
+"sectionGap": {
+"kind": "number",
+"min": 80,
+"max": 160,
+"step": 8,
+"unit": "px"
+},
+"roundedScale": {
+"kind": "number",
+"min": 16,
+"max": 40,
+"step": 2,
+"unit": "px"
+},
+"decisionMode": {
+"kind": "enum",
+"options": [
+"risk",
+"revenue",
+"action"
+]
+}
+}/*TWEAK-SCHEMA-END*/;
+function DollarIcon() {
+return (
+<span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-accent-soft)] text-[10px] font-bold text-[var(--color-accent)]">$</span>
+);
+}
+function ClockIcon() {
+return (
+<span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(140,102,255,0.12)] text-[10px] text-[#8c66ff]">&#9201;</span>
+);
+}
+function AlertDot() {
+return (
+<span className="inline-block h-2.5 w-2.5 rounded-full bg-[var(--color-alert)]"></span>
+);
+}
+function LogoMark() {
+return (
+<div className="flex items-center">
+<span className="font-display text-[1.5rem] font-[800] tracking-[-0.04em] text-[var(--color-text)]">Reordify</span>
+</div>
+);
+}
+function CountUp({ value, prefix = '', suffix = '', duration = 1200 }) {
+const [count, setCount] = useState(0);
+useEffect(() => {
+const startTime = performance.now();
+const tick = (now) => {
+const progress = Math.min((now - startTime) / duration, 1);
+const eased = 1 - Math.pow(1 - progress, 3);
+setCount(Math.round(value * eased));
+if (progress < 1) frame = requestAnimationFrame(tick);
+};
+frame = requestAnimationFrame(tick);
+return () => cancelAnimationFrame(frame);
+}, [value, duration]);
+return <span className="count-up">{prefix}{count.toLocaleString('en-US')}{suffix}</span>;
+}
+function Nav({ current, onNavigate, onCta }) {
+return (
+<header className="sticky top-0 z-50 border-b border-[var(--color-line)] bg-white/80 backdrop-blur-xl">
+<div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+<button onClick={() => onNavigate('home')} className="hover-lift focus-ring rounded-2xl text-left">
+<LogoMark />
+</button>
+<nav className="hidden items-center gap-2 md:flex">
+{[
+{ key: 'home', label: 'Product' },
+{ key: 'pricing', label: 'Pricing' }
+].map((item) => (
+<button key={item.key} onClick={() => onNavigate(item.key)} className={`nav-link hover-lift focus-ring rounded-full px-4 py-2 text-sm text-[var(--color-muted)] ${current === item.key ? 'active' : ''}`}>{item.label}</button>
+))}
+<button onClick={() => onCta('demo')} className="hover-lift focus-ring ml-2 rounded-full border border-[var(--color-line)] px-5 py-3 text-sm font-semibold text-[var(--color-text)]">Free Demo</button>
+</nav>
+<div className="flex items-center gap-2 md:hidden">
+<button onClick={() => onNavigate(current === 'home' ? 'pricing' : 'home')} className="hover-lift focus-ring rounded-full border border-[var(--color-line)] px-4 py-2 text-sm font-semibold">{current === 'home' ? 'Pricing' : 'Product'}</button>
+<button onClick={() => onCta('demo')} className="hover-lift focus-ring rounded-full border border-[var(--color-line)] px-4 py-2 text-sm font-semibold">Demo</button>
+</div>
+</div>
+<div className="h-[3px] bg-[rgba(18,21,31,0.04)]">
+<div id="scrollProgress" className="progress-bar h-full bg-[var(--color-accent)]" style={{ transform: 'scaleX(0)' }}>
+</div>
+</div>
+</header>
+);
+}
+function FlowLine() {
+return (
+<svg className="flow-line hidden xl:block" viewBox="0 0 980 4400" preserveAspectRatio="none" aria-hidden="true">
+<defs>
+<linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stopColor="rgba(140,102,255,0.24)">
+</stop>
+<stop offset="60%" stopColor="rgba(7,213,104,0.28)">
+</stop>
+<stop offset="100%" stopColor="rgba(7,213,104,0.08)">
+</stop>
+</linearGradient>
+<linearGradient id="flowGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stopColor="rgba(140,102,255,0.26)">
+</stop>
+<stop offset="100%" stopColor="rgba(7,213,104,0.72)">
+</stop>
+</linearGradient>
+</defs>
+<path className="flow-path" d="M520 40 C760 180, 760 340, 530 520 C260 730, 260 920, 540 1130 C810 1330, 740 1580, 450 1770 C170 1960, 190 2210, 490 2410 C780 2590, 760 2860, 450 3070 C190 3250, 200 3490, 520 3710 C760 3880, 750 4140, 520 4340">
+</path>
+<path id="activeFlow" className="flow-active" d="M520 40 C760 180, 760 340, 530 520 C260 730, 260 920, 540 1130 C810 1330, 740 1580, 450 1770 C170 1960, 190 2210, 490 2410 C780 2590, 760 2860, 450 3070 C190 3250, 200 3490, 520 3710 C760 3880, 750 4140, 520 4340" style={{ strokeDashoffset: 9000 }}>
+</path>
+</svg>
+);
+}
+function Hero({ onCta }) {
+return (
+<section className="reveal relative mx-auto grid max-w-7xl items-center gap-16 px-6 pb-14 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pt-24">
+<div className="relative z-10">
+<div className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-[var(--color-text)] shadow-sm">
+<span className="h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]">
+</span>
+<span className="font-medium">Integrated with Shopify</span>
+</div>
+<h1 className="mt-8 max-w-3xl font-display text-[3rem] font-[800] leading-[0.96] tracking-[-0.06em] text-[var(--color-text)] sm:text-[4.2rem] lg:text-[5.25rem]">Know What to Restock Before It Costs You Sales</h1>
+<p className="mt-7 max-w-xl text-[1.125rem] leading-8 text-[var(--color-muted)]">See what's running out, how much money is at risk, and what to do next.</p>
+<div className="mt-10 flex flex-col gap-4 sm:flex-row">
+<button onClick={() => onCta('trial')} className="hover-lift focus-ring rounded-full bg-[var(--color-accent)] px-6 py-4 text-base font-semibold text-[#062912] shadow-[0_18px_40px_rgba(7,213,104,0.24)]">Start Free Trial</button>
+<button onClick={() => onCta('demo')} className="hover-lift focus-ring rounded-full border border-[var(--color-line)] bg-white px-6 py-4 text-base font-semibold text-[var(--color-text)]">Free Demo</button>
+</div>
+<div className="mt-16 grid max-w-xl grid-cols-3 gap-5">
+{[
+['7 days', 'to first decision'],
+['$4.6k', 'revenue risk surfaced'],
+['42 sec', 'to clear next action']
+].map((item) => (
+<div key={item[0]} className="rounded-[22px] border border-[var(--color-line)] bg-white p-5 shadow-sm">
+<div className="font-display text-2xl font-[700] tracking-[-0.05em]">{item[0]}</div>
+<div className="mt-2 text-sm leading-6 text-[var(--color-muted)]">{item[1]}</div>
+</div>
+))}
+</div>
+</div>
+<div className="relative z-10 flex justify-center lg:justify-end">
+<div className="relative w-full max-w-[560px]">
+{TWEAK_DEFAULTS.heroGlow ? <div className="absolute -right-10 -top-10 h-56 w-56 rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(140,102,255,0.20) 0%, rgba(7,213,104,0.14) 42%, transparent 72%)' }}>
+</div> : null}
+<div className="hero-float rounded-[32px] border border-[var(--color-line)] bg-white p-5 shadow-[0_40px_100px_rgba(23,28,45,0.10)]">
+<div className="mb-5 flex items-center justify-between rounded-[22px] border border-[var(--color-line)] bg-[rgba(18,21,31,0.02)] px-4 py-3">
+<div>
+<div className="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">Decision feed</div>
+<div className="mt-1 text-sm font-semibold text-[var(--color-text)]">Thursday, 09:42</div>
+</div>
+<div className="rounded-full bg-[var(--color-accent-soft)] px-3 py-1 text-xs font-semibold text-[var(--color-accent)]">Live recommendation</div>
+</div>
+<article className="decision-pulse hover-lift rounded-[28px] border border-[rgba(229,72,77,0.12)] bg-[linear-gradient(180deg,#ffffff_0%,#fffafa_100%)] p-7 shadow-[0_18px_40px_rgba(229,72,77,0.08)]">
+<div className="flex items-start justify-between gap-4">
+<div className="flex-1">
+<div className="flex items-center gap-2 mb-1">
+<AlertDot />
+<span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-alert)]">Urgent</span>
+</div>
+<h2 className="font-display text-[1.7rem] font-[700] tracking-[-0.05em]">Order 120 units today</h2>
+<p className="mt-3 text-base font-medium text-[var(--color-text)]">Hydration Pack &mdash; stockout in <CountUp value={5} /> days</p>
+<div className="mt-3 flex items-center gap-3">
+<div className="flex items-center gap-1.5 rounded-full bg-[var(--color-alert-soft)] px-3 py-1.5">
+<DollarIcon />
+<span className="text-sm font-semibold text-[var(--color-alert)]"><CountUp value={1240} prefix="$" /> at risk</span>
+</div>
+<div className="flex items-center gap-1.5 rounded-full bg-[rgba(18,21,31,0.04)] px-3 py-1.5">
+<ClockIcon />
+<span className="text-sm font-medium text-[var(--color-muted)]">5 days left</span>
+</div>
+</div>
+</div>
+</div>
+<div className="mt-6 rounded-[22px] border border-[rgba(7,213,104,0.12)] bg-[var(--color-accent-soft)] p-5">
+<div className="text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">Recommended action</div>
+<div className="mt-2 font-display text-[1.8rem] font-[700] tracking-[-0.05em] text-[var(--color-text)]">Order 120 units today</div>
+<button onClick={() => onCta('action')} className="hover-lift focus-ring mt-5 rounded-full bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[#062912]">Review order plan</button>
+</div>
+</article>
+<div className="mt-5 grid gap-4 sm:grid-cols-2">
+<div className="rounded-[24px] border border-[var(--color-line)] bg-white p-5 shadow-sm">
+<div className="text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">Units to reorder</div>
+<div className="mt-2 font-display text-5xl font-[700] tracking-[-0.05em] text-[var(--color-text)]">
+<CountUp value={120} />
+</div>
+<p className="mt-2 text-sm text-[var(--color-muted)]">Based on sales velocity and lead time.</p>
+</div>
+<div className="rounded-[24px] border border-[var(--color-line)] bg-white p-5 shadow-sm">
+<div className="flex items-center gap-1.5">
+<span className="text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">Cash protected</span>
+<DollarIcon />
+</div>
+<div className="mt-2 font-display text-5xl font-[700] tracking-[-0.05em] text-[var(--color-text)]">
+<CountUp value={381200} prefix="$" />
+</div>
+<p className="mt-2 text-sm text-[var(--color-muted)]">Estimated revenue preserved this cycle.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+);
+}
+function ProblemSection() {
+return (
+<section className="reveal mx-auto max-w-7xl px-6 py-32 lg:px-10">
+<div className="max-w-3xl">
+<div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">The problem</div>
+<h2 className="mt-5 font-display text-[2.4rem] font-[800] leading-tight tracking-[-0.05em] sm:text-[3.4rem]">Every wrong inventory decision costs you money</h2>
+</div>
+<div className="mt-14 grid gap-6 lg:grid-cols-2">
+<article className="hover-lift rounded-[32px] border border-[rgba(229,72,77,0.10)] bg-[linear-gradient(180deg,#fff_0%,#fff7f7_100%)] p-8 shadow-sm">
+<div className="flex items-center gap-2">
+<AlertDot />
+<span className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-alert)]">Lost sales</span>
+</div>
+<div className="mt-4 flex items-baseline gap-2">
+<span className="font-display text-[4rem] font-[800] leading-none tracking-[-0.06em] text-[var(--color-text)]">$86k</span>
+<DollarIcon />
+</div>
+<p className="mt-3 max-w-md text-lg leading-8 text-[var(--color-muted)]">When bestsellers run dry, high-intent demand disappears before your team can react.</p>
+<div className="mt-8 rounded-[24px] border border-[rgba(229,72,77,0.08)] bg-white p-5">
+<div className="text-sm font-medium text-[var(--color-text)]">2 flagship SKUs projected to stock out this week</div>
+<div className="mt-2 text-sm text-[var(--color-muted)]">Without action, paid traffic keeps sending buyers into unavailable inventory.</div>
+</div>
+</article>
+<article className="hover-lift rounded-[32px] border border-[var(--color-line)] bg-[linear-gradient(180deg,#fff_0%,#f8fff9_100%)] p-8 shadow-sm">
+<div className="flex items-center gap-2">
+<DollarIcon />
+<span className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)]">Dead stock</span>
+</div>
+<div className="mt-4 flex items-baseline gap-2">
+<span className="font-display text-[4rem] font-[800] leading-none tracking-[-0.06em] text-[var(--color-text)]">$19k</span>
+<DollarIcon />
+</div>
+<p className="mt-3 max-w-md text-lg leading-8 text-[var(--color-muted)]">Buying the wrong volume ties up cash, storage, and attention in inventory that sits too long.</p>
+<div className="mt-8 rounded-[24px] border border-[var(--color-line)] bg-white p-5">
+<div className="text-sm font-medium text-[var(--color-text)]">14 slow-moving variants holding 39 days of excess stock</div>
+<div className="mt-2 text-sm text-[var(--color-muted)]">Reordify flags what not to reorder, not just what to panic about.</div>
+</div>
+</article>
+</div>
+</section>
+);
+}
+function ShiftSection() {
+return (
+<section className="reveal mx-auto max-w-7xl px-6 py-32 lg:px-10">
+<div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+<div>
+<div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">The shift</div>
+<h2 className="mt-5 font-display text-[2.4rem] font-[800] leading-tight tracking-[-0.05em] sm:text-[3.2rem]">Stop guessing. Start deciding.</h2>
+<p className="mt-6 max-w-xl text-lg leading-8 text-[var(--color-muted)]">Replace noisy spreadsheets and weekly guesswork with one clear recommendation at the moment it matters.</p>
+</div>
+<div className="grid gap-6 md:grid-cols-2">
+<article className="relative z-10 rounded-[30px] border border-[var(--color-line)] bg-white p-7 shadow-sm">
+<div className="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">Before</div>
+<h3 className="mt-4 font-display text-3xl font-[700] tracking-[-0.05em]">Spreadsheets + confusion</h3>
+<ul className="mt-7 space-y-4 text-[1rem] leading-7 text-[var(--color-muted)]">
+{['Lead times checked too late', 'Revenue risk hidden across tabs', 'Teams debate instead of act'].map((text) =>
+<li key={text} className="flex gap-3">
+<span className="mt-2 h-2.5 w-2.5 rounded-full bg-[rgba(18,21,31,0.24)]">
+</span>
+<span>{text}</span>
+</li>)}
+</ul>
+</article>
+<article className="rounded-[30px] border border-[rgba(7,213,104,0.12)] bg-[linear-gradient(180deg,rgba(7,213,104,0.07)_0%,#fff_100%)] p-7 shadow-sm">
+<div className="text-xs uppercase tracking-[0.18em] text-[var(--color-accent)]">After</div>
+<h3 className="mt-4 font-display text-3xl font-[700] tracking-[-0.05em]">Clear actions + decisions</h3>
+<ul className="mt-7 space-y-4 text-[1rem] leading-7 text-[var(--color-muted)]">
+{['See which SKU needs attention first', 'Know the money at risk instantly', 'Take the recommended reorder action today'].map((text) =>
+<li key={text} className="flex gap-3">
+<span className="mt-2 h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]">
+</span>
+<span>{text}</span>
+</li>)}
+</ul>
+</article>
+</div>
+</div>
+</section>
+);
+}
+function WalkthroughSection({ onCta, copied, onCopy }) {
+return (
+<section className="reveal mx-auto max-w-7xl px-6 py-32 lg:px-10">
+<div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+<div className="max-w-2xl">
+<div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Product walkthrough</div>
+<h2 className="mt-5 font-display text-[2.4rem] font-[800] leading-tight tracking-[-0.05em] sm:text-[3.2rem]">A product view built around the next decision</h2>
+</div>
+<div className="tooltip-wrap relative">
+<button onClick={onCopy} className="hover-lift focus-ring rounded-full border border-[var(--color-line)] bg-white px-4 py-3 text-sm font-semibold text-[var(--color-text)]">{copied ? 'Copied' : 'Copy decision ID'}</button>
+<div role="tooltip" className="tooltip absolute right-0 top-[calc(100%+10px)] w-52 rounded-2xl border border-[var(--color-line)] bg-white p-3 text-xs leading-5 text-[var(--color-muted)] shadow-lg">Quick-share the flagged decision with your buyer or ops lead.</div>
+</div>
+</div>
+<div className="mt-14 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+<article className="hover-lift rounded-[32px] border border-[var(--color-line)] bg-white p-7 shadow-[0_24px_70px_rgba(23,28,45,0.06)]">
+<div className="flex items-center justify-between">
+<div>
+<div className="flex items-center gap-2">
+<AlertDot />
+<span className="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">Urgent recommendation</span>
+</div>
+<h3 className="mt-3 font-display text-[2rem] font-[700] tracking-[-0.05em]">Order 120 units today</h3>
+</div>
+<div className="rounded-full bg-[var(--color-alert-soft)] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-alert)]">5 days left</div>
+</div>
+<div className="mt-8 grid gap-5 sm:grid-cols-3">
+{[
+{ label: 'Risk', value: '$1,240', desc: 'Revenue exposed', icon: DollarIcon },
+{ label: 'Revenue', value: '$8,920', desc: '7-day run rate', icon: DollarIcon },
+{ label: 'Action', value: '120 units', desc: 'Order today', icon: null, isAction: true }
+].map((item) => (
+<div key={item.label} className={`rounded-[24px] border p-5 ${item.isAction ? 'border-[rgba(7,213,104,0.16)] bg-[var(--color-accent-soft)]' : 'border-[var(--color-line)]'}`}>
+<div className="flex items-center gap-1.5">
+{item.icon ? <item.icon /> : null}
+<span className="text-xs uppercase tracking-[0.14em] text-[var(--color-muted)]">{item.label}</span>
+</div>
+<div className={`mt-3 font-display font-[700] tracking-[-0.05em] ${item.isAction ? 'text-[2.8rem] text-[var(--color-accent)]' : 'text-[2.2rem]'}`}>{item.value}</div>
+<div className="mt-2 text-sm text-[var(--color-muted)]">{item.desc}</div>
+</div>
+))}
+</div>
+<div className="mt-7 rounded-[24px] border border-[rgba(7,213,104,0.12)] bg-[var(--color-accent-soft)] p-5">
+<div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+<div>
+<div className="text-xs uppercase tracking-[0.14em] text-[var(--color-muted)]">Recommended next move</div>
+<div className="mt-2 text-lg font-semibold text-[var(--color-text)]">Place PO-2841 before 4:00 PM to avoid a weekend stockout</div>
+</div>
+<button onClick={() => onCta('purchase')} className="hover-lift focus-ring rounded-full bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[#062912]">Approve action</button>
+</div>
+</div>
+</article>
+<div className="grid gap-6">
+<article className="rounded-[30px] border border-[var(--color-line)] bg-[rgba(18,21,31,0.02)] p-7">
+<div className="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">No extra reading</div>
+<p className="mt-4 text-lg leading-8 text-[var(--color-text)]">Reordify surfaces the SKU, the urgency, the money at risk, and the action &mdash; all in one frame.</p>
+</article>
+<article className="rounded-[30px] border border-[var(--color-line)] bg-white p-7 shadow-sm">
+<div className="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">Empty state</div>
+<div className="mt-6 flex items-center gap-4 rounded-[24px] border border-dashed border-[var(--color-line)] bg-[rgba(18,21,31,0.02)] p-5">
+<svg width="46" height="46" viewBox="0 0 46 46" fill="none" aria-hidden="true">
+<rect x="7" y="10" width="32" height="24" rx="12" fill="rgba(7,213,104,0.10)">
+</rect>
+<path d="M15 23L21 28L31 17" stroke="var(--color-accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+</path>
+</svg>
+<div>
+<div className="font-semibold text-[var(--color-text)]">No urgent decisions right now</div>
+<div className="mt-1 text-sm leading-6 text-[var(--color-muted)]">All tracked SKUs are within healthy reorder windows. Check slower movers next.</div>
+<button onClick={() => onCta('review-slow')} className="hover-lift focus-ring mt-4 rounded-full border border-[var(--color-line)] px-4 py-2 text-sm font-semibold">Review slower SKUs</button>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+);
+}
+function ImpactSection() {
+return (
+<section className="reveal mx-auto max-w-7xl px-6 py-32 lg:px-10">
+<div className="max-w-2xl">
+<div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Economic impact</div>
+<h2 className="mt-5 font-display text-[2.4rem] font-[800] leading-tight tracking-[-0.05em] sm:text-[3.2rem]">Built for real business impact</h2>
+</div>
+<div className="mt-14 grid gap-6 lg:grid-cols-3">
+{[
+{ title: 'Reduce dead inventory', desc: 'Free up cash that would otherwise get trapped in low-velocity variants.', stat: '19-day faster correction window', color: 'rgba(140,102,255,0.42)', icon: DollarIcon },
+{ title: 'Improve cash flow', desc: 'Order only what your near-term demand and lead time justify.', stat: '$2.4k less excess buying', color: 'var(--color-accent)', icon: DollarIcon },
+{ title: 'Prevent lost sales', desc: 'Catch risk before your top SKU disappears from the shelf.', stat: '87% fewer surprise stockouts', color: 'var(--color-alert)', icon: AlertDot }
+].map((card) => (
+<article key={card.title} className="hover-lift rounded-[30px] border border-[var(--color-line)] bg-white p-8 shadow-sm">
+<div className="flex items-center gap-3">
+<div className="h-1.5 w-14 rounded-full" style={{ background: card.color }}></div>
+<card.icon />
+</div>
+<h3 className="mt-6 font-display text-[1.8rem] font-[700] tracking-[-0.05em]">{card.title}</h3>
+<p className="mt-4 text-base leading-8 text-[var(--color-muted)]">{card.desc}</p>
+<div className="mt-8 rounded-[22px] bg-[rgba(18,21,31,0.03)] px-4 py-3 text-sm font-semibold text-[var(--color-text)]">{card.stat}</div>
+</article>
+))}
+</div>
+</section>
+);
+}
+function TrustSection() {
+return (
+<section className="reveal mx-auto max-w-7xl px-6 py-28 lg:px-10">
+<div className="rounded-[34px] border border-[var(--color-line)] bg-[linear-gradient(135deg,rgba(140,102,255,0.08),rgba(7,213,104,0.08),#fff)] p-8 shadow-sm lg:p-10">
+<div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+<div>
+<div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Trust</div>
+<h2 className="mt-4 font-display text-[2.2rem] font-[800] leading-tight tracking-[-0.05em] sm:text-[2.8rem]">Fast enough for operators, simple enough for founders</h2>
+</div>
+<div className="grid gap-4 sm:grid-cols-3">
+{[
+['Works with Shopify', 'Pulls live inventory and sales context directly into your decision flow.'],
+['No setup required', 'Connect the store, let the system flag what matters first.'],
+['Decisions in seconds', 'From risk surfaced to clear action without digging through tabs.']
+].map((item) => (
+<article key={item[0]} className="rounded-[24px] border border-[rgba(18,21,31,0.06)] bg-white/90 p-5 backdrop-blur">
+<h3 className="font-semibold text-[var(--color-text)]">{item[0]}</h3>
+<p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">{item[1]}</p>
+</article>
+))}
+</div>
+</div>
+</div>
+</section>
+);
+}
+function ProductViewSection({ mode, setMode, onCta }) {
+const modes = [
+{ key: 'risk', label: 'Risk' },
+{ key: 'revenue', label: 'Revenue' },
+{ key: 'action', label: 'Action' }
+];
+return (
+<section className="reveal mx-auto max-w-7xl px-6 py-32 lg:px-10">
+<div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+<div className="max-w-2xl">
+<div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Product page</div>
+<h2 className="mt-5 font-display text-[2.4rem] font-[800] leading-tight tracking-[-0.05em] sm:text-[3.2rem]">Understand the product visually, not verbally</h2>
+</div>
+<div className="inline-flex rounded-full border border-[var(--color-line)] bg-white p-1 shadow-sm">
+{modes.map((item) => (
+<button key={item.key} onClick={() => setMode(item.key)} className={`hover-lift focus-ring rounded-full px-4 py-2 text-sm font-semibold ${mode === item.key ? 'bg-[rgba(18,21,31,0.06)] text-[var(--color-text)] shadow-sm' : 'text-[var(--color-muted)]'}`}>{item.label}</button>
+))}
+</div>
+</div>
+<div className="mt-14 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+<article className="rounded-[34px] border border-[var(--color-line)] bg-white p-5 shadow-[0_30px_80px_rgba(23,28,45,0.06)] lg:p-7">
+<div className="flex items-center justify-between rounded-[22px] border border-[var(--color-line)] px-4 py-3">
+<div>
+<div className="text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">Reordify workspace</div>
+<div className="mt-1 text-base font-semibold text-[var(--color-text)]">Purchase recommendations</div>
+</div>
+<div className="rounded-full bg-[var(--color-accent-soft)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">Connected to Shopify</div>
+</div>
+{mode === 'risk' && (
+<div className="view-panel mt-7 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+<div className="rounded-[28px] border border-[rgba(229,72,77,0.10)] bg-[linear-gradient(180deg,#fff_0%,#fff7f7_100%)] p-7">
+<div className="flex items-center gap-2">
+<AlertDot />
+<span className="text-xs uppercase tracking-[0.16em] text-[var(--color-alert)]">Stockout alert</span>
+</div>
+<div className="mt-4 font-display text-[3.8rem] font-[800] leading-none tracking-[-0.06em]">$1,240</div>
+<div className="mt-2 text-base font-semibold text-[var(--color-text)]">Revenue at risk in 5 days</div>
+<div className="mt-6 rounded-[22px] border border-[rgba(229,72,77,0.08)] bg-white p-4 text-sm leading-7 text-[var(--color-muted)]">Hydration Pack will cross the minimum safe buffer before your next inbound shipment.</div>
+<button onClick={() => onCta('restock')} className="hover-lift focus-ring mt-5 rounded-full bg-[var(--color-alert)] px-5 py-3 text-sm font-semibold text-white">View restock action</button>
+</div>
+<div className="rounded-[28px] border border-[var(--color-line)] bg-[rgba(18,21,31,0.02)] p-7">
+<div className="text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">Inventory list</div>
+<div className="mt-5 space-y-3">
+{[
+{ sku: 'Hydration Pack', stock: 132, status: 'Low' },
+{ sku: 'Trail Runner Pro', stock: 410, status: 'OK' },
+{ sku: 'Summit Jacket', stock: 87, status: 'Low' },
+{ sku: 'Base Layer Set', stock: 540, status: 'OK' }
+].map((item) => (
+<div key={item.sku} className="flex items-center justify-between rounded-[18px] bg-white px-4 py-3">
+<div>
+<div className="text-sm font-medium text-[var(--color-text)]">{item.sku}</div>
+<div className="text-xs text-[var(--color-muted)]">{item.stock} units</div>
+</div>
+{item.status === 'Low' ? <span className="rounded-full bg-[var(--color-alert-soft)] px-2.5 py-1 text-[11px] font-semibold text-[var(--color-alert)]">Low</span> : <span className="rounded-full bg-[var(--color-accent-soft)] px-2.5 py-1 text-[11px] font-semibold text-[var(--color-accent)]">OK</span>}
+</div>
+))}
+</div>
+</div>
+</div>
+)}
+{mode === 'revenue' && (
+<div className="view-panel mt-7 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+<div className="rounded-[28px] border border-[var(--color-line)] bg-[linear-gradient(180deg,rgba(7,213,104,0.09),#fff)] p-7">
+<div className="flex items-center gap-2">
+<DollarIcon />
+<span className="text-xs uppercase tracking-[0.16em] text-[var(--color-accent)]">Dashboard</span>
+</div>
+<div className="mt-4 font-display text-[3.8rem] font-[800] leading-none tracking-[-0.06em]">$8,920</div>
+<div className="mt-2 text-base font-semibold text-[var(--color-text)]">7-day run rate protected</div>
+<div className="mt-6 text-sm leading-7 text-[var(--color-muted)]">The reorder keeps your highest-converting SKU available through the strongest conversion window this week.</div>
+</div>
+<div className="rounded-[28px] border border-[var(--color-line)] bg-white p-7">
+<div className="text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">Revenue timeline</div>
+<div className="mt-5 space-y-3">
+{[
+{ day: 'Today', amount: '$1,180' },
+{ day: 'Tomorrow', amount: '$1,260' },
+{ day: '3 days', amount: '$1,410' },
+{ day: '7 days', amount: '$8,920' }
+].map((row) => (
+<div key={row.day} className="flex items-center justify-between rounded-[18px] bg-[rgba(18,21,31,0.03)] px-4 py-3">
+<span className="text-sm text-[var(--color-muted)]">{row.day}</span>
+<span className="font-semibold text-[var(--color-text)]">{row.amount}</span>
+</div>
+))}
+</div>
+</div>
+</div>
+)}
+{mode === 'action' && (
+<div className="view-panel mt-7 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+<div className="rounded-[28px] border border-[rgba(7,213,104,0.12)] bg-[var(--color-accent-soft)] p-7">
+<div className="text-xs uppercase tracking-[0.16em] text-[var(--color-accent)]">Restock action</div>
+<div className="mt-4 font-display text-[3.5rem] font-[800] leading-none tracking-[-0.06em]">Order 120</div>
+<div className="mt-2 text-base font-semibold text-[var(--color-text)]">Units today before 4:00 PM</div>
+<button onClick={() => onCta('approve')} className="hover-lift focus-ring mt-7 rounded-full bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[#062912]">Approve reorder</button>
+</div>
+<div className="rounded-[28px] border border-[var(--color-line)] bg-white p-7">
+<div className="text-xs uppercase tracking-[0.16em] text-[var(--color-muted)]">Order screen</div>
+<div className="mt-5 space-y-3">
+{[
+{ label: 'Supplier', value: 'BluePeak Fulfillment' },
+{ label: 'PO value', value: '$42,600' },
+{ label: 'Expected arrival', value: 'Next Tuesday' },
+{ label: 'Decision confidence', value: 'High' }
+].map((row) => (
+<div key={row.label} className="flex items-center justify-between rounded-[18px] border border-[var(--color-line)] px-4 py-3">
+<span className="text-sm text-[var(--color-muted)]">{row.label}</span>
+<span className="font-semibold text-[var(--color-text)]">{row.value}</span>
+</div>
+))}
+</div>
+</div>
+</div>
+)}
+</article>
+<article className="rounded-[34px] border border-[var(--color-line)] bg-[rgba(18,21,31,0.02)] p-5 shadow-sm">
+<div className="text-xs uppercase tracking-[0.18em] text-[var(--color-muted)]">Mobile preview</div>
+<div className="mx-auto mt-6 max-w-[290px] rounded-[38px] border-[10px] border-[var(--color-text)] bg-white p-3 shadow-[0_24px_60px_rgba(18,21,31,0.12)]">
+<div className="mx-auto mb-4 h-1.5 w-20 rounded-full bg-[rgba(18,21,31,0.16)]">
+</div>
+<div className="rounded-[28px] bg-[linear-gradient(180deg,rgba(140,102,255,0.08),rgba(7,213,104,0.10),#fff)] p-5">
+<div className="flex items-center gap-2">
+<AlertDot />
+<span className="text-xs uppercase tracking-[0.16em] text-[var(--color-alert)]">Stockout alert</span>
+</div>
+<div className="mt-2 font-display text-[1.8rem] font-[700] tracking-[-0.05em]">Order 120 units</div>
+<div className="mt-2 text-sm leading-6 text-[var(--color-muted)]">Hydration Pack will stock out in 5 days.</div>
+<div className="mt-3 flex items-center gap-2">
+<DollarIcon />
+<span className="text-sm font-semibold text-[var(--color-alert)]">$1,240 at risk</span>
+</div>
+<button onClick={() => onCta('mobile-approve')} className="hover-lift focus-ring mt-4 w-full rounded-full bg-[var(--color-accent)] px-4 py-3 text-sm font-semibold text-[#062912]">Approve now</button>
+</div>
+<div className="mt-4 space-y-2">
+<div className="rounded-[20px] border border-[var(--color-line)] p-3">
+<div className="flex items-center justify-between">
+<span className="text-xs text-[var(--color-muted)]">Revenue protected</span>
+<span className="text-sm font-semibold text-[var(--color-text)]">$8,920</span>
+</div>
+<div className="mt-2 h-2 rounded-full bg-[rgba(18,21,31,0.06)]">
+<div className="h-full w-[72%] rounded-full bg-[var(--color-accent)]">
+</div>
+</div>
+</div>
+<div className="rounded-[20px] border border-[var(--color-line)] p-3">
+<div className="text-xs text-[var(--color-muted)]">Inventory list</div>
+<div className="mt-2 space-y-1.5">
+{[
+{ sku: 'Hydration Pack', status: 'Low' },
+{ sku: 'Trail Runner', status: 'OK' }
+].map((item) => (
+<div key={item.sku} className="flex items-center justify-between text-xs">
+<span className="text-[var(--color-text)]">{item.sku}</span>
+{item.status === 'Low' ? <span className="text-[var(--color-alert)] font-semibold">Low</span> : <span className="text-[var(--color-accent)] font-semibold">OK</span>}
+</div>
+))}
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+);
+}
+function PricingSection({ openFaq, setOpenFaq, onCta }) {
+const faqs = [
+['How does it work?', 'Reordify connects to Shopify, reads current sales and stock context, and surfaces the next inventory action instead of another dashboard.'],
+['Is setup complicated?', 'No. Most stores connect in minutes and start seeing recommendations without a long onboarding process.'],
+['How is pricing structured?', 'You can start on Free for basic alerts, then move to Pro for forecasting, advanced alerts, and deeper decision support.'],
+['What\'s the difference between Free and Pro?', 'Free helps you spot risk. Pro helps you make higher-confidence reorder decisions with forecasting and advanced signals.']
+];
+return (
+<section className="reveal mx-auto max-w-7xl px-6 py-32 lg:px-10">
+<div className="max-w-2xl">
+<div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Pricing</div>
+<h2 className="mt-5 font-display text-[2.4rem] font-[800] leading-tight tracking-[-0.05em] sm:text-[3.2rem]">Simple pricing for decisive teams</h2>
+</div>
+<div className="mt-14 grid gap-6 lg:grid-cols-2">
+<article className="hover-lift rounded-[32px] border border-[var(--color-line)] bg-white p-8 shadow-sm">
+<div className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-muted)]">Free</div>
+<div className="mt-4 font-display text-[4rem] font-[800] leading-none tracking-[-0.06em]">$0</div>
+<div className="mt-2 text-base text-[var(--color-muted)]">For brands getting started with stock alerts</div>
+<ul className="mt-8 space-y-4 text-base leading-7 text-[var(--color-text)]">{['Basic alerts', 'Limited usage', 'Shopify connection'].map((item) =>
+<li key={item} className="flex gap-3">
+<span className="mt-2 h-2.5 w-2.5 rounded-full bg-[rgba(18,21,31,0.24)]">
+</span>
+<span>{item}</span>
+</li>)}</ul>
+<button onClick={() => onCta('free')} className="hover-lift focus-ring mt-8 rounded-full border border-[var(--color-line)] px-5 py-3 text-sm font-semibold text-[var(--color-text)]">Start Free Trial</button>
+</article>
+<article className="hover-lift rounded-[32px] border border-[rgba(7,213,104,0.12)] bg-[linear-gradient(180deg,rgba(7,213,104,0.08),#fff)] p-8 shadow-[0_22px_60px_rgba(7,213,104,0.10)]">
+<div className="flex items-center justify-between gap-4">
+<div className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)]">Pro</div>
+<div className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)] shadow-sm">Most popular</div>
+</div>
+<div className="mt-4 font-display text-[4rem] font-[800] leading-none tracking-[-0.06em]">$29</div>
+<div className="mt-2 text-base text-[var(--color-muted)]">For operators who need smarter reorder decisions</div>
+<ul className="mt-8 space-y-4 text-base leading-7 text-[var(--color-text)]">{['Forecasting', 'Advanced alerts', 'Insights'].map((item) =>
+<li key={item} className="flex gap-3">
+<span className="mt-2 h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]">
+</span>
+<span>{item}</span>
+</li>)}</ul>
+<button onClick={() => onCta('pro')} className="hover-lift focus-ring mt-8 rounded-full bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[#062912]">Choose Pro</button>
+</article>
+</div>
+<div className="mt-16 rounded-[32px] border border-[var(--color-line)] bg-white p-6 shadow-sm lg:p-8">
+<div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+<h3 className="font-display text-[2rem] font-[700] tracking-[-0.05em]">FAQ</h3>
+<div className="text-sm text-[var(--color-muted)]">Everything teams ask before switching from spreadsheets</div>
+</div>
+<div className="mt-8 space-y-4">
+{faqs.map((faq, idx) => (
+<article key={faq[0]} className="rounded-[24px] border border-[var(--color-line)] px-5 py-4">
+<button onClick={() => setOpenFaq(openFaq === idx ? null : idx)} className="hover-lift focus-ring flex w-full items-center justify-between gap-4 rounded-2xl text-left">
+<span className="text-base font-semibold text-[var(--color-text)]">{faq[0]}</span>
+<span className="text-xl text-[var(--color-muted)]">{openFaq === idx ? '\u2212' : '+'}</span>
+</button>
+{openFaq === idx ? <div className="view-panel pt-4 text-sm leading-7 text-[var(--color-muted)]">{faq[1]}</div> : null}
+</article>
+))}
+</div>
+</div>
+</section>
+);
+}
+function FinalCTA({ onCta }) {
+return (
+<section className="reveal mx-auto max-w-7xl px-6 py-32 lg:px-10">
+<div className="rounded-[38px] border border-[rgba(18,21,31,0.06)] bg-[linear-gradient(135deg,rgba(140,102,255,0.10),rgba(7,213,104,0.12),#ffffff)] p-10 shadow-[0_28px_70px_rgba(23,28,45,0.06)] lg:p-14">
+<div className="max-w-3xl">
+<div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">Ready when you are</div>
+<h2 className="mt-5 font-display text-[2.6rem] font-[800] leading-[1.02] tracking-[-0.05em] sm:text-[3.6rem]">Make your next inventory decision in seconds</h2>
+<p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--color-muted)]">Connect your store, surface the highest-risk SKU, and move from uncertainty to action fast.</p>
+<div className="mt-10 flex flex-col gap-4 sm:flex-row">
+<button onClick={() => onCta('trial')} className="hover-lift focus-ring rounded-full bg-[var(--color-accent)] px-6 py-4 text-base font-semibold text-[#062912] shadow-[0_18px_40px_rgba(7,213,104,0.22)]">Start Free Trial</button>
+<button onClick={() => onCta('demo')} className="hover-lift focus-ring rounded-full border border-[var(--color-line)] bg-white px-6 py-4 text-base font-semibold text-[var(--color-text)]">Free Demo</button>
+</div>
+</div>
+</div>
+</section>
+);
+}
+function Footer() {
+return <footer className="mx-auto flex max-w-7xl flex-col gap-3 px-6 pb-10 pt-4 text-sm text-[var(--color-muted)] lg:flex-row lg:items-center lg:justify-between lg:px-10">
+<div>Reordify &mdash; inventory decisions for Shopify / D2C brands</div>
+<div>Built to tell teams what to do next</div>
+</footer>;
+}
+function DemoModal({ open, onClose, type, triggerToast }) {
+const [step, setStep] = useState(1);
+const [form, setForm] = useState({ name: '', email: '', orders: '', category: '' });
+useEffect(() => {
+if (open) {
+setStep(1);
+setForm({ name: '', email: '', orders: '', category: '' });
+}
+}, [open]);
+if (!open) return null;
+const handleNext = () => {
+if (form.name.trim() && form.email.trim()) setStep(2);
+};
+const handleSubmit = () => {
+triggerToast(type === 'trial' ? 'Trial request queued' : 'Demo request queued');
+onClose();
+};
+return (
+<div className="fixed inset-0 z-[70] flex items-center justify-center bg-[rgba(18,21,31,0.28)] p-4">
+<div className="view-panel w-full max-w-xl rounded-[32px] border border-[var(--color-line)] bg-white p-8 shadow-[0_30px_90px_rgba(18,21,31,0.18)]">
+<div className="flex items-start justify-between gap-4">
+<div>
+<div className="text-xs uppercase tracking-[0.18em] text-[var(--color-accent)]">{type === 'trial' ? 'Start trial' : 'Book demo'}</div>
+<h3 className="mt-2 font-display text-[2rem] font-[700] tracking-[-0.05em]">{type === 'trial' ? 'Get your first decision this week' : 'See how Reordify flags your next inventory move'}</h3>
+</div>
+<button onClick={onClose} className="hover-lift focus-ring rounded-full border border-[var(--color-line)] px-3 py-2 text-sm font-semibold">Esc</button>
+</div>
+<div className="mt-6 flex items-center gap-3">
+<div className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${step >= 1 ? 'bg-[var(--color-accent)] text-[#062912]' : 'bg-[rgba(18,21,31,0.06)] text-[var(--color-muted)]'}`}>1</div>
+<div className={`h-0.5 flex-1 rounded-full ${step >= 2 ? 'bg-[var(--color-accent)]' : 'bg-[rgba(18,21,31,0.08)]'}`}></div>
+<div className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${step >= 2 ? 'bg-[var(--color-accent)] text-[#062912]' : 'bg-[rgba(18,21,31,0.06)] text-[var(--color-muted)]'}`}>2</div>
+</div>
+{step === 1 ? (
+<div className="mt-7">
+<div className="space-y-4">
+<div className="relative">
+<div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+</div>
+<input value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} className="focus-ring w-full rounded-[20px] border border-[var(--color-line)] py-4 pl-11 pr-4 text-base outline-none" placeholder="Business name" aria-label="Business name" />
+</div>
+<div className="relative">
+<div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+</div>
+<input value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} className="focus-ring w-full rounded-[20px] border border-[var(--color-line)] py-4 pl-11 pr-4 text-base outline-none" placeholder="Work email" aria-label="Work email" />
+</div>
+</div>
+<button onClick={handleNext} className="hover-lift focus-ring mt-6 w-full rounded-full bg-[var(--color-accent)] px-5 py-4 text-base font-semibold text-[#062912]">Continue</button>
+</div>
+) : (
+<div className="mt-7">
+<div className="space-y-4">
+<div className="relative">
+<div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+</div>
+<select value={form.orders} onChange={(e) => setForm({...form, orders: e.target.value})} className="focus-ring w-full appearance-none rounded-[20px] border border-[var(--color-line)] bg-white py-4 pl-11 pr-4 text-base outline-none" aria-label="Monthly orders">
+<option value="">Monthly orders</option>
+<option value="0-100">0 &ndash; 100</option>
+<option value="100-500">100 &ndash; 500</option>
+<option value="500-2000">500 &ndash; 2,000</option>
+<option value="2000+">2,000+</option>
+</select>
+</div>
+<div className="relative">
+<div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+</div>
+<select value={form.category} onChange={(e) => setForm({...form, category: e.target.value})} className="focus-ring w-full appearance-none rounded-[20px] border border-[var(--color-line)] bg-white py-4 pl-11 pr-4 text-base outline-none" aria-label="Category">
+<option value="">Category</option>
+<option value="fashion">Fashion & Apparel</option>
+<option value="beauty">Beauty & Personal Care</option>
+<option value="food">Food & Beverage</option>
+<option value="electronics">Electronics</option>
+<option value="home">Home & Garden</option>
+<option value="other">Other</option>
+</select>
+</div>
+</div>
+<div className="mt-6 flex gap-3">
+<button onClick={() => setStep(1)} className="hover-lift focus-ring rounded-full border border-[var(--color-line)] px-5 py-3 text-sm font-semibold text-[var(--color-text)]">Back</button>
+<button onClick={handleSubmit} className="hover-lift focus-ring flex-1 rounded-full bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[#062912]">{type === 'trial' ? 'Start Free Trial' : 'Request Demo'}</button>
+</div>
+</div>
+)}
+</div>
+</div>
+);
+}
+function Toast({ message, show, onClose }) {
+return (
+<div className={`toast fixed bottom-5 right-5 z-[80] rounded-[24px] border border-[var(--color-line)] bg-white px-5 py-4 shadow-[0_20px_60px_rgba(18,21,31,0.12)] ${show ? 'show' : ''}`}>
+<div className="flex items-center gap-4">
+<div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--color-accent-soft)] font-bold text-[var(--color-accent)]">&#10003;</div>
+<div>
+<div className="font-semibold text-[var(--color-text)]">{message}</div>
+<div className="text-sm text-[var(--color-muted)]">We saved your request for follow-up.</div>
+</div>
+<button onClick={onClose} className="hover-lift focus-ring rounded-full border border-[var(--color-line)] px-3 py-2 text-xs font-semibold">Close</button>
+</div>
+</div>
+);
+}
+function App() {
+const [view, setView] = useState('home');
+const [mode, setMode] = useState(TWEAK_DEFAULTS.decisionMode);
+const [openFaq, setOpenFaq] = useState(0);
+const [modal, setModal] = useState(null);
+const [toast, setToast] = useState('');
+const [showToast, setShowToast] = useState(false);
+const [copied, setCopied] = useState(false);
+const triggerToast = (message) => {
+setToast(message);
+setShowToast(true);
+window.setTimeout(() => setShowToast(false), 2500);
+};
+useEffect(() => {
+const onKey = (e) => { if (e.key === 'Escape') setModal(null); };
+window.addEventListener('keydown', onKey);
+return () => window.removeEventListener('keydown', onKey);
+}, []);
+useEffect(() => {
+const els = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting) entry.target.classList.add('visible');
+});
+}, { threshold: 0.14 });
+els.forEach((el) => io.observe(el));
+return () => io.disconnect();
+}, [view]);
+useEffect(() => {
+const onScroll = () => {
+const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+const progressBar = document.getElementById('scrollProgress');
+const activeFlow = document.getElementById('activeFlow');
+if (progressBar) progressBar.style.transform = `scaleX(${Math.min(progress, 1)})`;
+if (activeFlow) activeFlow.style.strokeDashoffset = String(9000 - progress * 7200);
+};
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+return () => window.removeEventListener('scroll', onScroll);
+}, [view]);
+const onCopy = async () => {
+try {
+if (navigator.clipboard) await navigator.clipboard.writeText('REO-DEC-2841');
+} catch (e) {}
+setCopied(true);
+window.setTimeout(() => setCopied(false), 1200);
+};
+const handleCta = (type) => {
+if (type === 'demo') setModal('demo');
+else if (type === 'trial' || type === 'free' || type === 'pro') setModal('trial');
+else triggerToast('Action queued for review');
+};
+return (
+<div className="relative min-h-screen">
+<FlowLine />
+<Nav current={view} onNavigate={setView} onCta={handleCta} />
+<main>
+<div className="mx-auto max-w-[1600px]">
+{view === 'home' ? (
+<>
+<Hero onCta={handleCta} />
+<ProblemSection />
+<ShiftSection />
+<WalkthroughSection onCta={handleCta} copied={copied} onCopy={onCopy} />
+<ImpactSection />
+<TrustSection />
+<FinalCTA onCta={handleCta} />
+</>
+) : (
+<>
+<ProductViewSection mode={mode} setMode={setMode} onCta={handleCta} />
+<PricingSection openFaq={openFaq} setOpenFaq={setOpenFaq} onCta={handleCta} />
+<FinalCTA onCta={handleCta} />
+</>
+)}
+</div>
+</main>
+<Footer />
+<DemoModal open={modal !== null} onClose={() => setModal(null)} type={modal} triggerToast={triggerToast} />
+<Toast message={toast} show={showToast} onClose={() => setShowToast(false)} />
+</div>
+);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+    </body>
+  </html>
